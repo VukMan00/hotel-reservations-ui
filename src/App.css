@@ -2,8 +2,34 @@ body {
   text-align: center;
   font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
   color: white;
+}
+
+.navigationBar{
+  position: absolute;
+  top: 0;
+  right: 0;
+  margin: 10px 10px 10px 10px;
+}
+
+.bottomBar{
+  background-color: black;
+}
+
+.mainPage{
+  display: flex;
+  flex-direction: column;
+  background-image: url('https://www.photohound.co/images/1000848l.jpg');
   background-size:cover;
   background-repeat: no-repeat;
+}
+
+.pageInfo{
+  height: 900px;
+  background-color: rgba(0, 0, 0, 0.464);
+}
+
+.headingOfRooms{
+  border: 5px solid gray;
 }
 
 #fonsionTitle{
@@ -13,9 +39,51 @@ body {
   margin: 60px 60px 60px 60px;
 }
 
-.navigationBar{
-  background-color: #3399FF;
-  border-radius: 50px;
-  border: 5px solid black;
+.array-of-rooms{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  padding: 10px 10px 10px 10px;
 }
 
+.room{
+  margin: 10px 10px 10px 10px;
+  cursor: pointer;
+  width: auto;
+  height: auto;
+  padding: 5px 5px 5px 5px;
+  border-radius: 20px;
+  background-color: rgba(162, 159, 159, 0.464);
+  backdrop-filter: blur(2px);
+  color: white;
+  text-decoration: none;
+}
+
+.room:hover{
+  background-color: rgba(54, 54, 54, 0.82);
+  backdrop-filter: blur(2px);
+}
+
+.roomImage{
+  border-radius: 10px;
+}
+
+.login,.signup{
+  margin: 5px 5px 5px 5px;
+  border: 2px solid gray;
+  width: auto;
+  height: auto;
+  font-size: large;
+  border-radius: 20px;
+  background-color: white;
+  color: black;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.login:hover,
+.signup:hover{
+  background-color: rgba(124, 108, 108, 0.82);
+  border: 2px solid black;
+  transition: background-color 0.5s linear 0.1s
+}
