@@ -1,10 +1,23 @@
 import React from 'react'
+import { Link, useLocation } from 'react-router-dom';
 
 const NavBar = () => {
+  const location = useLocation();
+  var pathname = location.pathname;
+
   return (
     <div className='navigationBar'>
-      <button className='login'>LogIn</button>
-      <button className='signup'>SignUp</button>
+      <div className='authentication'>
+        {pathname==='/login' || pathname==='/register' ? (
+          <></>
+        ):(
+          <>
+          <Link to="/login" className='login'>LogIn</Link>
+          <Link className='signup'>SignUp</Link>
+          </>
+        )}
+      </div>
+      
     </div>
   )
 }
