@@ -13,6 +13,7 @@ const NavBar = () => {
         ):(
           <>
           <Link to="/auth" className='auth'>LogIn</Link>
+          <Link to="/register" className='auth'>Register</Link>
           </>
         )}
       </div>

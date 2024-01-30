@@ -54,7 +54,7 @@ const Authentication = () => {
     });
   };
 
-  function potvrdi(){
+  function confirm(){
     document.getElementById("alert").style.visibility = 'hidden';
     if(document.getElementById('textAlertLogin').innerHTML === 'Login is successfull'){
         navigate(from,{replace:true});
@@ -100,7 +100,7 @@ const Authentication = () => {
             </div>
             <div className="content">
                 <p id="textAlertLogin"></p>
-                <button id="confirm" onClick={()=>potvrdi()}>OK</button>
+                <button id="confirm" onClick={()=>confirm()}>OK</button>
             </div>
         </div>
       </div>

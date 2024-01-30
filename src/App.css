@@ -151,8 +151,8 @@ input:hover{
   transition: background-color 0.5s linear 0.1s
 }
 
-
-#alert,#alertLoading{
+#alert,#alertLoading,
+#alertConfirmRegistration{
   position: fixed;
   top: 50%;
   left: 50%;
@@ -161,7 +161,7 @@ input:hover{
   visibility: hidden;
 }
 
-#box,#boxLoading{
+#box,#boxLoading,#boxConfirmRegistration{
   border-radius: 5px; 
   height: auto;
   width: auto;
@@ -175,6 +175,10 @@ input:hover{
   width: 300px;
 }
 
+#boxConfirmRegistration{
+  width: 500px;
+}
+
 .message{
   background-color: rgb(118, 53, 7);
   color: white;
@@ -186,6 +190,7 @@ input:hover{
   margin-top: 30px;
   font-size: larger;
   font-weight: bolder;
+  text-align: center;
 }
 
 #confirm{
