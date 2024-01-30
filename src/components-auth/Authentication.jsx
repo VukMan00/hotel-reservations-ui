@@ -42,6 +42,8 @@ const Authentication = () => {
         const accessToken = session.getAccessToken().getJwtToken();
         console.log('JWT Token:', accessToken);
         setIsLoading(false);
+        sessionStorage.setItem('accessToken',accessToken);
+        sessionStorage.setItem('username',username);
         document.getElementById('textAlertLogin').innerHTML ='Login is successfull';
         document.getElementById("alert").style.visibility = 'visible';
       },

@@ -1,15 +1,17 @@
 import {CognitoUser, CognitoUserAttribute, CognitoUserPool } from 'amazon-cognito-identity-js';
 import React, { useState } from 'react'
 import {useNavigate } from 'react-router-dom';
+import { saveGuest } from '../service/GuestService';
 
 const Registration = () => {
   const[isLoading,setIsLoading]=useState(false);
   const navigate = useNavigate();
 
-  const[user,setUser] = useState({
-    'username':'',
-    'password':'',
-    'email':'',
+  const[username,setUsername]=useState('');
+  const[password,setPassword]=useState('');
+  const[email,setEmail]=useState('');
+
+  const[guest,setGuest] = useState({
     'jmbg':'',
     'dateOfBirth':'',
     'name':'',
@@ -24,9 +26,9 @@ const Registration = () => {
   });
 
   function handleInput(e){
-    let newUser = user;
-    newUser[e.target.name]=e.target.value;
-    setUser(newUser);
+    let newGuest = guest;
+    newGuest[e.target.name]=e.target.value;
+    setGuest(newGuest);
   }
 
   const register = async(e)=>{
@@ -34,9 +36,9 @@ const Registration = () => {
     setIsLoading(true);
     try{
       const attributeList = [
-        new CognitoUserAttribute({ Name: 'email', Value: user.email }),
+        new CognitoUserAttribute({ Name: 'email', Value: email }),
       ];
-      userPool.signUp(user.username, user.password, attributeList, null, (err, result) => {
+      userPool.signUp(username, password, attributeList, null, (err, result) => {
         if (err) {
           console.error('Registration error', err);
           setIsLoading(false);
@@ -59,7 +61,7 @@ const Registration = () => {
     setIsLoading(true);
     try {
       const userData = {
-        Username: user.username,
+        Username: username,
         Pool: userPool,
       };
 
@@ -78,12 +80,24 @@ const Registration = () => {
         } else {
           console.log('Verification successful. Result:', result);
           setIsLoading(false);
+          addGuest();
           document.getElementById('textAlertRegistration').innerHTML = 'Registration is successfull';
           document.getElementById('alert').style.visibility = 'visible';
         }
       });
     } catch (error) {
       console.error('Error during verification', error);
+    }
+  }
+
+  const addGuest = async()=>{
+    try{
+      const response = saveGuest(guest);
+      console.log(response);
+    }catch(error){
+      console.log(error);
+      document.getElementById('textAlertRegistration').innerHTML = 'Registration failed';
+      document.getElementById('alert').style.visibility = 'visible';
     }
   }
 
@@ -103,11 +117,11 @@ const Registration = () => {
         </div>
         <form className='registration-form' onSubmit={register}>
           <label htmlFor='username'>Username</label>
-          <input type="text" name="username" id="username" placeholder='Type username...' onInput={(e)=>handleInput(e)}/>
+          <input type="text" name="username" id="username" placeholder='Type username...' onChange={(e)=>setUsername(e.target.value)}/>
           <label htmlFor='password'>Password</label>
-          <input type="password" name="password" id="password" placeholder='Type password...' onInput={(e)=>handleInput(e)}/>
+          <input type="password" name="password" id="password" placeholder='Type password...' onChange={(e)=>setPassword(e.target.value)}/>
           <label htmlFor='email'>Email</label>
-          <input type="email" name="email" id="email" placeholder='Type email...' onInput={(e)=>handleInput(e)}/>
+          <input type="email" name="email" id="email" placeholder='Type email...' onChange={(e)=>setEmail(e.target.value)}/>
           <label htmlFor='jmbg'>JMBG</label>
           <input type="jmbg" name="jmbg" id="jmbg" placeholder='Type JMBG - 13 letters...' onInput={(e)=>handleInput(e)}/>
           <label htmlFor='dateOfBirth'>Date of birth</label>
