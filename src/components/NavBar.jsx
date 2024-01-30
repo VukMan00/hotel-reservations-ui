@@ -8,12 +8,11 @@ const NavBar = () => {
   return (
     <div className='navigationBar'>
       <div className='authentication'>
-        {pathname==='/login' || pathname==='/register' ? (
+        {pathname==='/auth' || pathname==='/register' ? (
           <></>
         ):(
           <>
-          <Link to="/login" className='login'>LogIn</Link>
-          <Link className='signup'>SignUp</Link>
+          <Link to="/auth" className='auth'>LogIn</Link>
           </>
         )}
       </div>

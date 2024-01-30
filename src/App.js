@@ -3,7 +3,8 @@ import React from 'react';
 import {Routes,Route} from "react-router-dom";
 import MainPage from './components/MainPage';
 import NavBar from './components/NavBar';
-import Login from './components-auth/Login';
+import Authentication from './components-auth/Authentication';
+import Registration from './components-auth/Registration';
 
 function App() {
   return (
@@ -11,7 +12,8 @@ function App() {
     <NavBar />
     <Routes>
       <Route path={"/"} element={<MainPage />} />
-      <Route path={"/login"} element={<Login />} />
+      <Route path={"/auth"} element={<Authentication />} />
+      <Route path={"/register"} element={<Registration />} />
     </Routes>
     </>
   );

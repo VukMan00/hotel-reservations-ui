@@ -69,11 +69,10 @@ body {
   border-radius: 10px;
 }
 
-.login,.signup{
+.auth{
   margin: 5px 5px 5px 5px;
   padding: 3px 3px 3px 3px;
   border: 2px solid gray;
-  width: auto;
   height: auto;
   font-size: large;
   border-radius: 20px;
@@ -83,14 +82,13 @@ body {
   text-decoration: none;
 }
 
-.login:hover,
-.signup:hover{
+.auth:hover{
   background-color: rgba(124, 108, 108, 0.82);
   border: 2px solid black;
   transition: background-color 0.5s linear 0.1s
 }
 
-.login-page{
+.authentication-page{
   background-color: white;
   display: flex;
   flex-direction: row;
@@ -98,69 +96,63 @@ body {
   color: black;
 }
 
-.login-component{
+.authentication-component{
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   padding-top: 5%;
-  padding-left: 5%;
-  height: 30vh;
+  padding-left: 7%;
+  height: 50vh;
 }
 
-.heading-login-page{
+.heading-authentication-page{
   width: 100%;
   font-size: larger;
 }
 
-.login-form{
-  margin-top: 50%;
-  text-align: left;
+.login-form,.registration-form{
   display: flex;
   flex-direction: column;
+  text-align: left;
+  width: 70%;
 }
 
 label{
-  margin: 7% 3% 3% 3%;
-  font-style: italic;
+  font-size: larger;
+  margin-top: 10px;
+}
+
+input{
+  border: none;
+  margin: 10px 10px 10px 10px;
   font-size: larger;
 }
 
-.credentials{
-  margin-left: 3%;
-  border: none;
-  font-size: large;
-}
-
-.credentials:hover{
+input:hover{
   border: 2px solid black;
-  border-radius: 20px;
 }
 
-#btn-login{
-  margin-top: 10%;
-  margin-bottom: 5%;
+#btn-login,#btn-register{
+  margin-top: 10px;
+  margin-bottom: 5px;
   width: 100%;
+  height: 80%;
   border: none;
-  border-radius: 5%;
-  color: white;
+  border-radius: 10px;
   font-size: larger;
-  height: 50%;
-  background-color: rgba(91, 176, 245, 0.82);
-  backdrop-filter: blur(2px);
+  background-color: rgba(54, 194, 241, 0.82);
+  color: white;
   cursor: pointer;
 }
 
-#btn-login:hover{
-  background-color: rgb(2, 141, 192);
+#btn-login:hover,
+#btn-register:hover{
+  background-color: rgba(9, 117, 153, 0.82);
   transition: background-color 0.5s linear 0.1s
 }
 
-.link-register{
-  text-decoration: none;
-  color:  rgba(91, 176, 245, 0.82);
-}
 
-#alertLoading{
+#alert,#alertLoading{
   position: fixed;
   top: 50%;
   left: 50%;
@@ -169,18 +161,22 @@ label{
   visibility: hidden;
 }
 
-#boxLoading{
+#box,#boxLoading{
   border-radius: 5px; 
   height: auto;
-  width: 250px;
+  width: auto;
   float:left;
   text-align: center;
   box-shadow: 2px 2px 8px black;
   background-color: white;
 }
 
+#boxLoading{
+  width: 300px;
+}
+
 .message{
-  background-color: saddlebrown;
+  background-color: rgb(118, 53, 7);
   color: white;
   font-size: larger;
   padding:5px;
@@ -190,4 +186,24 @@ label{
   margin-top: 30px;
   font-size: larger;
   font-weight: bolder;
+}
+
+#confirm{
+  height: 25px;
+  width: 80px;
+  border-radius: 8px;
+  background-color: aliceblue;
+  color: saddlebrown;
+  cursor: pointer;
+  margin-top: 20px;
+  margin-left: 400px;
+  box-sizing: border-box;
+  font-size: medium;
+  font-weight: bold;
+}
+
+#confirm:hover{
+  background-color: #FF8000;
+  color: aliceblue;
+  transition: background-color 0.5s linear 0.1s;
 }

@@ -2,7 +2,35 @@
   "auth": {
     "hotelreservationsbe315e93": {
       "customAuth": false,
-      "dependsOn": [],
+      "dependsOn": [
+        {
+          "attributes": [
+            "Arn",
+            "Name"
+          ],
+          "category": "function",
+          "resourceName": "hotelreservationsbe315e93DefineAuthChallenge",
+          "triggerProvider": "Cognito"
+        },
+        {
+          "attributes": [
+            "Arn",
+            "Name"
+          ],
+          "category": "function",
+          "resourceName": "hotelreservationsbe315e93CreateAuthChallenge",
+          "triggerProvider": "Cognito"
+        },
+        {
+          "attributes": [
+            "Arn",
+            "Name"
+          ],
+          "category": "function",
+          "resourceName": "hotelreservationsbe315e93VerifyAuthChallengeResponse",
+          "triggerProvider": "Cognito"
+        }
+      ],
       "frontendAuthConfig": {
         "mfaConfiguration": "OFF",
         "mfaTypes": [
@@ -23,6 +51,73 @@
       },
       "providerPlugin": "awscloudformation",
       "service": "Cognito"
+    }
+  },
+  "function": {
+    "hotelreservationsbe315e93CreateAuthChallenge": {
+      "build": true,
+      "providerPlugin": "awscloudformation",
+      "service": "Lambda"
+    },
+    "hotelreservationsbe315e93DefineAuthChallenge": {
+      "build": true,
+      "providerPlugin": "awscloudformation",
+      "service": "Lambda"
+    },
+    "hotelreservationsbe315e93VerifyAuthChallengeResponse": {
+      "build": true,
+      "providerPlugin": "awscloudformation",
+      "service": "Lambda"
+    }
+  },
+  "parameters": {
+    "AMPLIFY_function_hotelreservationsbe315e93CreateAuthChallenge_deploymentBucketName": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "hotelreservationsbe315e93CreateAuthChallenge"
+        }
+      ]
+    },
+    "AMPLIFY_function_hotelreservationsbe315e93CreateAuthChallenge_s3Key": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "hotelreservationsbe315e93CreateAuthChallenge"
+        }
+      ]
+    },
+    "AMPLIFY_function_hotelreservationsbe315e93DefineAuthChallenge_deploymentBucketName": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "hotelreservationsbe315e93DefineAuthChallenge"
+        }
+      ]
+    },
+    "AMPLIFY_function_hotelreservationsbe315e93DefineAuthChallenge_s3Key": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "hotelreservationsbe315e93DefineAuthChallenge"
+        }
+      ]
+    },
+    "AMPLIFY_function_hotelreservationsbe315e93VerifyAuthChallengeResponse_deploymentBucketName": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "hotelreservationsbe315e93VerifyAuthChallengeResponse"
+        }
+      ]
+    },
+    "AMPLIFY_function_hotelreservationsbe315e93VerifyAuthChallengeResponse_s3Key": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "hotelreservationsbe315e93VerifyAuthChallengeResponse"
+        }
+      ]
     }
   }
 }
