@@ -69,7 +69,7 @@ body {
   border-radius: 10px;
 }
 
-.auth{
+.auth,.make-reservations{
   margin: 5px 5px 5px 5px;
   padding: 3px 3px 3px 3px;
   border: 2px solid gray;
@@ -82,7 +82,7 @@ body {
   text-decoration: none;
 }
 
-.auth:hover{
+.auth:hover,.make-reservations:hover{
   background-color: rgba(124, 108, 108, 0.82);
   border: 2px solid black;
   transition: background-color 0.5s linear 0.1s
@@ -117,6 +117,17 @@ body {
   width: 70%;
 }
 
+.reservation-form{
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+  border: 2px solid black;
+  border-radius: 20px;
+  padding: 10px 10px 10px 10px;
+  width: 20%;
+  background-color: rgba(221, 217, 217, 0.82);
+}
+
 label{
   font-size: larger;
   margin-top: 10px;
@@ -149,6 +160,21 @@ input:hover{
 #btn-register:hover{
   background-color: rgba(9, 117, 153, 0.82);
   transition: background-color 0.5s linear 0.1s
+}
+
+.reservations{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  margin-top: 5%;
+  color: black;
+}
+
+.reservation-field{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  padding: 10px 10px 10px 10px;
 }
 
 #alert,#alertLoading,
@@ -211,4 +237,17 @@ input:hover{
   background-color: #FF8000;
   color: aliceblue;
   transition: background-color 0.5s linear 0.1s;
+}
+
+#btn-make-reservation{
+  border-radius: 20px;
+  background-color: rgba(134, 131, 131, 0.82);
+  color: white;
+  padding: 5px 5px 5px 5px;
+  cursor: pointer;
+}
+
+#btn-make-reservation:hover{
+  background-color: rgba(7, 7, 7, 0.82);
+  transition: background-color 0.5s linear 0.1s
 }

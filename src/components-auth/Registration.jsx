@@ -1,7 +1,7 @@
 import {CognitoUser, CognitoUserAttribute, CognitoUserPool } from 'amazon-cognito-identity-js';
 import React, { useState } from 'react'
 import {useNavigate } from 'react-router-dom';
-import { saveGuest } from '../service/GuestService';
+import { deleteGuest, saveGuest } from '../service/GuestService';
 
 const Registration = () => {
   const[isLoading,setIsLoading]=useState(false);
@@ -15,14 +15,15 @@ const Registration = () => {
     'jmbg':'',
     'dateOfBirth':'',
     'name':'',
-    'lastname':'',  
+    'lastname':'',
+    'username':username  
   });
 
   const[codeRegistration,setCodeRegistration]=useState('');
 
   const userPool = new CognitoUserPool({
-    UserPoolId: 'us-east-1_0JjHGByy9',
-    ClientId: '1ldkq6d1h0hhnmtg4usa6ef5om',
+    UserPoolId: 'us-east-1_2luIwzMCv',
+    ClientId: '29m9qjp3qkpc43j7e6773eofao',
   });
 
   function handleInput(e){
@@ -34,26 +35,33 @@ const Registration = () => {
   const register = async(e)=>{
     e.preventDefault();
     setIsLoading(true);
-    try{
-      const attributeList = [
-        new CognitoUserAttribute({ Name: 'email', Value: email }),
-      ];
+    const attributeList = [
+      new CognitoUserAttribute({ Name: 'email', Value: email }),
+    ];
+    guest.username = username;
+    const response = saveGuest(guest);
+    response.then((result)=>{
+      console.log(result);
       userPool.signUp(username, password, attributeList, null, (err, result) => {
+        setIsLoading(false);
         if (err) {
           console.error('Registration error', err);
-          setIsLoading(false);
+          const response = deleteGuest(guest.jmbg);
+          console.log(response);
           document.getElementById('textAlertRegistration').innerHTML = 'Registration failed';
           document.getElementById('alert').style.visibility = 'visible';
         } else {
           const cognitoUser = result.user;
           console.log('Registration successful. Cognito User:', cognitoUser);
-          setIsLoading(false);
           document.getElementById('alertConfirmRegistration').style.visibility = 'visible';
         }
       });
-    }catch(e){
-      console.log(e);
-    }
+    }).catch((error)=>{
+      console.log(error);
+      setIsLoading(false);
+      document.getElementById('textAlertRegistration').innerHTML = 'Registration failed';
+      document.getElementById('alert').style.visibility = 'visible';
+    });
   }
 
   const confirmRegistration = async(e)=>{
@@ -80,24 +88,12 @@ const Registration = () => {
         } else {
           console.log('Verification successful. Result:', result);
           setIsLoading(false);
-          addGuest();
           document.getElementById('textAlertRegistration').innerHTML = 'Registration is successfull';
           document.getElementById('alert').style.visibility = 'visible';
         }
       });
     } catch (error) {
       console.error('Error during verification', error);
-    }
-  }
-
-  const addGuest = async()=>{
-    try{
-      const response = saveGuest(guest);
-      console.log(response);
-    }catch(error){
-      console.log(error);
-      document.getElementById('textAlertRegistration').innerHTML = 'Registration failed';
-      document.getElementById('alert').style.visibility = 'visible';
     }
   }
 

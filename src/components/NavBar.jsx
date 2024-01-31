@@ -1,13 +1,15 @@
 import React from 'react'
-import { Link, useLocation } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 
 const NavBar = () => {
+  const navigate = useNavigate();
   const location = useLocation();
   var pathname = location.pathname;
 
   function logOut(){
     sessionStorage.clear();
-    window.location.reload();
+    navigate('/');
+    
   }
 
   return (
