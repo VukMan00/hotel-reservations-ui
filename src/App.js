@@ -6,6 +6,7 @@ import NavBar from './components/NavBar';
 import Authentication from './components-auth/Authentication';
 import Registration from './components-auth/Registration';
 import MakeRervation from './components-reservations/MakeRervation';
+import GetReservation from './components-reservations/GetReservation';
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
       <Route path={"/auth"} element={<Authentication />} />
       <Route path={"/register"} element={<Registration />} />
       <Route path={"/reservations"} element={<MakeRervation />} />
+      <Route path={"/myreservations"} element={<GetReservation />}/>
     </Routes>
     </>
   );

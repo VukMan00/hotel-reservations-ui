@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { useLocation, useNavigate } from 'react-router-dom';
 import { getRoom } from '../service/RoomsService';
 import { getGuestFromUsername, getPromoCodes } from '../service/GuestService';
-import { createReservation } from '../service/Reservations';
+import { createReservation, updateReservation } from '../service/Reservations';
 
 const MakeRervation = () => {
   const navigate = useNavigate();
@@ -113,25 +113,45 @@ const MakeRervation = () => {
     try{  
       const response = await createReservation(reservation);
       console.log(response);
-      const emailToken = response.split(',');
+      if(response?.includes('@')){
+        const emailToken = response.split(',');
 
-      const email = emailToken[0];
-      const token = emailToken[1];
+        const email = emailToken[0];
+        const token = emailToken[1];
 
-      if(selectedPromoCodes.length !== 0){
-        const promoCode = selectedPromoCodes[0];
-        console.log(promoCode);
-        //IMPLEMENTACIJA UPDATE CENE!!!!
+        if(selectedPromoCodes.length !== 0){
+          const promoCode = promoCodes.find(item=>item.code.includes(selectedPromoCodes[0]));
+          console.log(promoCode);
+          const response = updatePriceOfReservation(email,token,promoCode);
+          console.log(response);
+          response.then((result)=>{
+            console.log(result);
+          }).catch((error)=>{
+            console.log(error);
+          })
+        }
+        setIsLoading(false);
+        document.getElementById('textAlertReservation').innerHTML = `Your reservation is successfully made. Your email is: ${email} and token: ${token}`;
+        document.getElementById('alert').style.visibility = 'visible'; 
+      }else{
+        setIsLoading(false);
+        document.getElementById('textAlertReservation').innerHTML = response;
+        document.getElementById('alert').style.visibility = 'visible'; 
       }
-
-      document.getElementById('textAlertReservation').innerHTML = `Your reservation is successfully made. Your email is: ${email} and token: ${token}`;
-      document.getElementById('alert').style.visibility = 'visible';
-      setIsLoading(false);
     }catch(e){
       console.log(e);
       document.getElementById('textAlertReservation').innerHTML = 'Error making reservation';
       document.getElementById('alert').style.visibility = 'visible';
       setIsLoading(false);
+    }
+  }
+
+  const updatePriceOfReservation = async(email,token,promoCode)=>{
+    try{
+      const response = await updateReservation(email,token,promoCode);
+      return response;
+    }catch(e){
+      console.log(e);
     }
   }
 
@@ -151,34 +171,34 @@ const MakeRervation = () => {
           <h1>Price:{room.price}</h1>
       </div>
       <div className='reservation-field'>
-          <form className='reservation-form' onSubmit={makeReservation}>
-            <label htmlFor='guest'>Guest</label>
-            <input type='text' name='guest' id='guest' value={guest.name + " " + guest.lastname} readOnly/>
-            <input type='text' name='jmbg' id='jmbg' value={guest.jmbg} readOnly/>
-            <label style={{marginTop:'20px',marginBottom:'10px'}}>Reservation data</label>
-            <label style={{fontSize:'large'}} htmlFor='dateFrom'>Date from</label>
-            <input type='date' name='dateFrom' id='dateFrom' onInput={(e)=>handleInputReservationPK(e)}/>
-            <label style={{fontSize:'large'}} htmlFor='dateTo'>Date to</label>
-            <input type='date' name='dateTo' id='dateTo' onInput={(e)=>handleInputReservationPK(e)}/>
-            <label style={{fontSize:'large'}} htmlFor='email'>Email</label>
-            <input type='email' name='email' id='email' onInput={(e)=>handleInput(e)}/>
-            <label style={{marginTop:'20px', marginBottom:'10px'}} htmlFor='promoCodes'>Promo Code</label>
-            <select name='promoCodes' id='selectionOption' multiple value={selectedPromoCodes} onChange={(e)=>handleSelectedPromoCodes(e)}>
-              {promoCodes?.length
-              ? (
-                <>
-                {promoCodes.map((promoCode,i)=>
-                  <option style={{fontSize:'larger'}}key={i} value={promoCode?.id}>{promoCode?.code}</option>
-                )}
-                </>
-              ):
-                <option value={-1}>Guest doesn't have any promo codes</option>}
-            </select>
-            <div className='button' style={{textAlign:'center'}}>
-              <input type="submit" name="makeReservation" id="btn-make-reservation" value="Make reservation"/>
-            </div>
-          </form>
-          <img style={{width:'30%'}}className='roomImage' src={`data:image/jpeg;base64,${room.picture}`} alt='roomImage' />
+        <form className='reservation-form' onSubmit={makeReservation}>
+          <label htmlFor='guest'>Guest</label>
+          <input type='text' name='guest' id='guest' value={guest.name + " " + guest.lastname} readOnly/>
+          <input type='text' name='jmbg' id='jmbg' value={guest.jmbg} readOnly/>
+          <label style={{marginTop:'20px',marginBottom:'10px'}}>Reservation data</label>
+          <label style={{fontSize:'large'}} htmlFor='dateFrom'>Date from</label>
+          <input type='date' name='dateFrom' id='dateFrom' onInput={(e)=>handleInputReservationPK(e)}/>
+          <label style={{fontSize:'large'}} htmlFor='dateTo'>Date to</label>
+          <input type='date' name='dateTo' id='dateTo' onInput={(e)=>handleInputReservationPK(e)}/>
+          <label style={{fontSize:'large'}} htmlFor='email'>Email</label>
+          <input type='email' name='email' id='email' onInput={(e)=>handleInput(e)}/>
+          <label style={{marginTop:'20px', marginBottom:'10px'}} htmlFor='promoCodes'>Promo Code</label>
+          <select name='promoCodes' id='selectionOption' multiple value={selectedPromoCodes} onChange={(e)=>handleSelectedPromoCodes(e)}>
+            {promoCodes?.length
+            ? (
+              <>
+              {promoCodes.map((promoCode,i)=>
+                <option style={{fontSize:'larger'}}key={i} value={promoCode?.id}>{promoCode?.code}</option>
+              )}
+              </>
+            ):
+              <option value={-1}>Guest doesn't have any promo codes</option>}
+          </select>
+          <div className='button' style={{textAlign:'center'}}>
+            <input type="submit" name="makeReservation" id="btn-make-reservation" value="Make reservation"/>
+          </div>
+        </form>
+        <img style={{width:'40%',height:'50%',borderRadius:'20px',border:'5px solid black'}}className='roomImage' src={`data:image/jpeg;base64,${room.picture}`} alt='roomImage' />
       </div>
       <div id="alertLoading" style={isLoading ? {visibility:'visible'} : {visibility:'hidden'}}>
         <div id="boxLoading">

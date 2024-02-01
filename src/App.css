@@ -101,7 +101,7 @@ body {
   flex-direction: column;
   justify-content: space-between;
   padding-top: 5%;
-  padding-left: 7%;
+  padding-left: 5%;
   height: 50vh;
 }
 
@@ -124,7 +124,7 @@ body {
   border: 2px solid black;
   border-radius: 20px;
   padding: 10px 10px 10px 10px;
-  width: 20%;
+  width: auto;
   background-color: rgba(221, 217, 217, 0.82);
 }
 
@@ -166,8 +166,10 @@ input:hover{
   display: flex;
   flex-direction: column;
   justify-content: space-evenly;
-  margin-top: 5%;
   color: black;
+  background-image: url('https://media3.giphy.com/media/ylyUQmXDhE8y6fjVkI/giphy.gif?cid=ecf05e47nbk2gj21orq31f8lf9uu1xujbhind4qzift7zfgx&ep=v1_gifs_related&rid=giphy.gif&ct=g');
+  background-size:cover;
+  background-repeat: no-repeat;
 }
 
 .reservation-field{
@@ -175,10 +177,12 @@ input:hover{
   flex-direction: row;
   justify-content: space-evenly;
   padding: 10px 10px 10px 10px;
+
 }
 
 #alert,#alertLoading,
-#alertConfirmRegistration{
+#alertConfirmRegistration,
+#alertCredentials{
   position: fixed;
   top: 50%;
   left: 50%;
@@ -210,6 +214,7 @@ input:hover{
   color: white;
   font-size: larger;
   padding:5px;
+  text-align: center;
 }
 
 .content{
@@ -223,6 +228,7 @@ input:hover{
   height: 25px;
   width: 80px;
   border-radius: 8px;
+  border: 2px solid black;
   background-color: aliceblue;
   color: saddlebrown;
   cursor: pointer;
@@ -233,13 +239,23 @@ input:hover{
   font-weight: bold;
 }
 
-#confirm:hover{
+#close{
+  position: absolute;
+  top: 0;
+  right: 0;
+  margin: 5px;
+  cursor: pointer;
+}
+
+#confirm:hover,
+#close:hover{
   background-color: #FF8000;
   color: aliceblue;
   transition: background-color 0.5s linear 0.1s;
 }
 
-#btn-make-reservation{
+#btn-make-reservation,
+#btn-delete-reservation{
   border-radius: 20px;
   background-color: rgba(134, 131, 131, 0.82);
   color: white;
@@ -247,7 +263,24 @@ input:hover{
   cursor: pointer;
 }
 
-#btn-make-reservation:hover{
+#btn-make-reservation:hover,
+#btn-delete-reservation:hover{
+  background-color: rgba(7, 7, 7, 0.82);
+  transition: background-color 0.5s linear 0.1s
+}
+
+.btn-my-reservations,.btn-my-promoCodes{
+  background-color: rgba(134, 131, 131, 0.82);
+  color: white;
+  border-radius: 20px;
+  margin: 10px 10px 10px 10px;
+  padding: 5px 5px 5px 5px;
+  text-decoration: none;
+  cursor: pointer;
+  width: 15%;
+}
+
+.btn-my-reservations:hover,.btn-my-promoCodes:hover{
   background-color: rgba(7, 7, 7, 0.82);
   transition: background-color 0.5s linear 0.1s
 }
