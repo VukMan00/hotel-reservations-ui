@@ -44,6 +44,7 @@ body {
   display: flex;
   flex-direction: row;
   justify-content: center;
+  flex-wrap: wrap;
   padding: 10px 10px 10px 10px;
 }
 
@@ -269,7 +270,7 @@ input:hover{
   transition: background-color 0.5s linear 0.1s
 }
 
-.btn-my-reservations,.btn-my-promoCodes{
+.btn-my-reservations{
   background-color: rgba(134, 131, 131, 0.82);
   color: white;
   border-radius: 20px;
@@ -280,7 +281,7 @@ input:hover{
   width: 15%;
 }
 
-.btn-my-reservations:hover,.btn-my-promoCodes:hover{
+.btn-my-reservations:hover{
   background-color: rgba(7, 7, 7, 0.82);
   transition: background-color 0.5s linear 0.1s
 }

@@ -48,6 +48,11 @@ const Registration = () => {
           console.error('Registration error', err);
           const response = deleteGuest(guest.jmbg);
           console.log(response);
+          response.then((result)=>{
+            console.log(result);
+          }).catch((error)=>{
+            console.log(error);
+          })
           document.getElementById('textAlertRegistration').innerHTML = 'Registration failed';
           document.getElementById('alert').style.visibility = 'visible';
         } else {

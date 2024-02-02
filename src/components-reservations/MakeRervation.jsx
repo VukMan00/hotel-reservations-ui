@@ -187,7 +187,9 @@ const MakeRervation = () => {
             {promoCodes?.length
             ? (
               <>
-              {promoCodes.map((promoCode,i)=>
+              {promoCodes
+              .filter((promoCode) => !promoCode.used)
+              .map((promoCode,i)=>
                 <option style={{fontSize:'larger'}}key={i} value={promoCode?.id}>{promoCode?.code}</option>
               )}
               </>

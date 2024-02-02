@@ -136,7 +136,7 @@ const GetReservation = () => {
                         <label htmlFor='email'>Email:</label>
                         <input style={{border:'2px solid black'}} name='email' id='email' placeholder='Type email...' onChange={(e)=>setEmail(e.target.value)} />
                         <label htmlFor='token'>Token:</label>
-                        <input style={{border:'2px solid black'}} name='token' id='token' placeholder='Type token...' onChange={(e)=>setToken(e.target.value)} />
+                        <input type='password' style={{border:'2px solid black'}} name='token' id='token' placeholder='Type token...' onChange={(e)=>setToken(e.target.value)} />
                         <input type='submit' id="confirm" name="confirm" value={'Submit'} />
                     </form>
                 </div>

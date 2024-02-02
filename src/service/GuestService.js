@@ -13,7 +13,7 @@ export const saveGuest = async(guest)=>{
 export const deleteGuest = async(guestJMBG)=>{
     try{
         const response = await axiosPrivate.delete('/guests/'+guestJMBG);
-        return response.data;
+        return response;
     }catch(err){
         console.error('Error deleting guest: ' + err);
         throw err;

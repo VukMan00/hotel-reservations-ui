@@ -67,7 +67,6 @@ const MainPage = () => {
         {sessionStorage?.getItem('accessToken')!=undefined ? (
           <div style={{height:'auto',marginTop:'15%',display:'flex',flexDirection:'row',justifyContent:'center'}}>
             <Link className='btn-my-reservations' onClick={(e)=>showReservation(e)}>My reservation</Link>
-            <Link className='btn-my-promoCodes' to={'/mypromocodes'}>My promoCodes</Link>
           </div>
         ):(
           <>
@@ -103,7 +102,7 @@ const MainPage = () => {
                 <label htmlFor='email'>Email:</label>
                 <input style={{border:'2px solid black'}} name='email' id='email' placeholder='Type email...' onChange={(e)=>setEmail(e.target.value)} />
                 <label htmlFor='token'>Token:</label>
-                <input style={{border:'2px solid black'}} name='token' id='token' placeholder='Type token...' onChange={(e)=>setToken(e.target.value)} />
+                <input type="password" style={{border:'2px solid black'}} name='token' id='token' placeholder='Type token...' onChange={(e)=>setToken(e.target.value)} />
                 <input type='submit' id="confirm" name="confirm" value={'Submit'} />
               </form>
           </div>
