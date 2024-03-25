@@ -98,7 +98,7 @@ const Registration = () => {
         }
       });
     } catch (error) {
-      console.error('Error during verification', error);
+      console.error('Verification of code failed', error);
     }
   }
 

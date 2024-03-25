@@ -54,6 +54,7 @@ const MakeRervation = () => {
         setRoom(response);
       }catch(e){
         setRoom(null);
+        console.log("Can't load room");
         console.log(e);
       }
     }

@@ -39,3 +39,13 @@ export const deleteReservation = async(email,token)=>{
         throw err;
     }
 }
+
+export const getPayments = async(guestJMBG)=>{
+    try{
+        const response = await axiosPrivate.get(`/reservations/payments/guest/${guestJMBG}`);
+        return response;
+    }catch(err){
+        console.log('Error getting payments: ' + err);
+        throw err;
+    }
+}

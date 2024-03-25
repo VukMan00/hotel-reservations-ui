@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import { AuthenticationDetails, CognitoUser, CognitoUserPool } from 'amazon-cognito-identity-js';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
+import { getGuestFromUsername } from '../service/GuestService';
 
 const Authentication = () => {
   const [username, setUsername] = useState('');
@@ -40,10 +41,15 @@ const Authentication = () => {
 
         // Access the JWT token
         const accessToken = session.getAccessToken().getJwtToken();
+        const response = getGuestFromUsername(username);
+        response.then(guest=>{
+          console.log(guest);
+          sessionStorage.setItem('accessToken',accessToken);
+          sessionStorage.setItem('username',username);
+          sessionStorage.setItem('jmbg',guest?.jmbg);
+        });
         console.log('JWT Token:', accessToken);
         setIsLoading(false);
-        sessionStorage.setItem('accessToken',accessToken);
-        sessionStorage.setItem('username',username);
         document.getElementById('textAlertLogin').innerHTML ='Login is successfull';
         document.getElementById("alert").style.visibility = 'visible';
       },
