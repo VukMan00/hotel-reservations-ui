@@ -22,8 +22,8 @@ const Authentication = () => {
     const authenticationDetails = new AuthenticationDetails(authenticationData);
 
     const poolData = {
-      UserPoolId: 'us-east-1_2luIwzMCv',
-      ClientId: '29m9qjp3qkpc43j7e6773eofao',
+      UserPoolId: '',
+      ClientId: '',
     };
 
     const userPool = new CognitoUserPool(poolData);

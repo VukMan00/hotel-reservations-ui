@@ -22,8 +22,8 @@ const Registration = () => {
   const[codeRegistration,setCodeRegistration]=useState('');
 
   const userPool = new CognitoUserPool({
-    UserPoolId: 'us-east-1_2luIwzMCv',
-    ClientId: '29m9qjp3qkpc43j7e6773eofao',
+    UserPoolId: '',
+    ClientId: '',
   });
 
   function handleInput(e){
